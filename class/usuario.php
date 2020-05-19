@@ -59,6 +59,49 @@
             }
 
         }
+        public static function getList(){
+           
+            $sql = new SqL();
+
+            return $sql->select("SELECT * FROM categorias ORDER BY CatCodigo");
+
+        }
+
+        public static function search($CatGrupo){
+           
+            $sql = new SqL();
+
+            return $sql->select("SELECT * FROM categorias WHERE CatGrupo LIKE :SEARCH ORDER BY CatCodigo", array(
+                ':SEARCH'=>"%".$CatGrupo."%"
+            ));
+
+        }
+
+        public function searchCadastro($CatGrupo, $CatSubGrupo){
+
+            $sql = new SqL();
+            
+            $results = $sql->select("SELECT * FROM categorias WHERE CatGrupo =  :CATGRUPO AND  CatSubGrupo = :CATSUBGRUPO", array(
+                ":CATGRUPO"=>$CatGrupo,
+                "CATSUBGRUPO"=>$CatSubGrupo
+            ));
+
+
+            if (count($results) > 0) {
+                $row = $results[0];
+
+                $this->setCatCodigo($row['CatCodigo']);
+                $this->setCatNome($row['CatNome']);
+                $this->setCatGrupo($row['CatGrupo']);
+                $this->setCatSubGrupo($row['CatSubGrupo']);
+
+            } else {
+
+                throw new Exception("Cadastro inválido");                
+
+            }
+
+        }
 
         public function __toString(){
             

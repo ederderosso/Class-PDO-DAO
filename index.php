@@ -2,16 +2,23 @@
 
     require_once("config.php");
 
-    $root = new Usuario();
+    //Carrega um usuário
+    //$root = new Usuario();
+    //$root->loadbyCod(1);
+    //echo $root;
 
-    $root->loadbyCod(1);
+    //Carrega uma lista de usuários
+    //$lista = Usuario::getList();
+    //echo json_encode($lista);
 
-    echo $root;
+    //Carrega uma lista apartir da categoria
+    //$search = Usuario::search("ac");
+    //echo json_encode($search);
 
-    // $sql = new SqL();
+    //Carrega por grupo e subgrupo
+    $usuario = new Usuario();
+    $usuario->searchCadastro("ROUPA", "MASCULINA");
 
-    // $usuarios = $sql->select("SELECT * FROM categorias");
-
-    // echo json_encode($usuarios);
+    echo $usuario;
 
 ?>
