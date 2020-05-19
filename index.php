@@ -2,10 +2,16 @@
 
     require_once("config.php");
 
-    $sql = new SqL();
+    $root = new Usuario();
 
-    $usuarios = $sql->select("SELECT * FROM clientes");
+    $root->loadbyCod(1);
 
-    echo json_encode($usuarios);
+    echo $root;
+
+    // $sql = new SqL();
+
+    // $usuarios = $sql->select("SELECT * FROM categorias");
+
+    // echo json_encode($usuarios);
 
 ?>
