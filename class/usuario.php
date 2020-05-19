@@ -140,6 +140,23 @@
             ));
         }
 
+        public function delete(){
+
+            $sql = new SqL();
+
+            $sql->query("DELETE FROM categorias WHERE CatCodigo = :CATCODIGO", array(
+
+                ':CATCODIGO'=>$this->getCatCodigo()
+
+            ));
+
+            $this->setCatCodigo(0);
+            $this->setCatNome("");
+            $this->setCatGrupo("");
+            $this->setCatSubGrupo("");       
+
+        }
+
         public function __construct($CatNome = "", $CatGrupo = "", $CatSubGrupo = ""){
 
             $this->setCatNome($CatNome);

@@ -29,10 +29,22 @@
     //echo $categoria;
 
     /*UPDATE NA TABELA CATEGORIAS*/
-    $usuario = new Usuario();
+    //$usuario = new Usuario();
 
-    $usuario->loadbyCod(6);
+    //$usuario->loadbyCod(6);
 
-    $usuario->update("DIVERSOS", "GERAIS", "INDIFERENTE");
+    //$usuario->update("DIVERSOS", "GERAIS", "INDIFERENTE");
 
-    echo $usuario;
+    //echo $usuario;
+
+    /* DELETE */
+    //$usuario = new Usuario();
+
+    //$usuario->LoadbyCod(6);
+
+    //$usuario->delete();
+
+    //echo $usuario;
+
+
+    ?>
