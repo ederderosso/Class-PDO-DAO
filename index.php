@@ -16,9 +16,23 @@
     //echo json_encode($search);
 
     //Carrega por grupo e subgrupo
+    //$usuario = new Usuario();
+    //$usuario->searchCadastro("ROUPA", "MASCULINA");
+    //echo $usuario;
+
+
+    /* Insere dados na tb categorias */
+    //$categoria = new Usuario("DIVERSOS", "GERAIS", "INDIFERENTE");
+  
+    //$categoria->insert();
+
+    //echo $categoria;
+
+    /*UPDATE NA TABELA CATEGORIAS*/
     $usuario = new Usuario();
-    $usuario->searchCadastro("ROUPA", "MASCULINA");
+
+    $usuario->loadbyCod(6);
+
+    $usuario->update("DIVERSOS", "GERAIS", "INDIFERENTE");
 
     echo $usuario;
-
-?>

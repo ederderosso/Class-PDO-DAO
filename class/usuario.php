@@ -49,12 +49,8 @@
 
 
             if (count($results) > 0) {
-                $row = $results[0];
 
-                $this->setCatCodigo($row['CatCodigo']);
-                $this->setCatNome($row['CatNome']);
-                $this->setCatGrupo($row['CatGrupo']);
-                $this->setCatSubGrupo($row['CatSubGrupo']);
+                $this->setDado($results[0]);
 
             }
 
@@ -88,12 +84,8 @@
 
 
             if (count($results) > 0) {
-                $row = $results[0];
-
-                $this->setCatCodigo($row['CatCodigo']);
-                $this->setCatNome($row['CatNome']);
-                $this->setCatGrupo($row['CatGrupo']);
-                $this->setCatSubGrupo($row['CatSubGrupo']);
+                
+                $this->setDado($results[0]);
 
             } else {
 
@@ -101,6 +93,58 @@
 
             }
 
+        }
+
+        public function setDado($dado){
+
+            $this->setCatCodigo($dado['CatCodigo']);
+            $this->setCatNome($dado['CatNome']);
+            $this->setCatGrupo($dado['CatGrupo']);
+            $this->setCatSubGrupo($dado['CatSubGrupo']);
+
+        }
+
+        public function insert(){
+
+            $sql = new SqL();
+
+            $results = $sql->select("CALL sp_categorias_insert(:CATNOME, :CATGRUPO, :CATSUBGRUPO)", array(
+                ':CATNOME'=>$this->getCatNome(),
+                ':CATGRUPO'=>$this->getCatGrupo(),
+                ':CATSUBGRUPO'=>$this->getCatSubGrupo()
+            ));
+
+            if (count($results) > 0){
+
+                $this->setDado($results[0]);
+            }
+
+
+        }
+
+        public function update($CatNome, $CatGrupo, $CatSubGrupo){
+
+            $this->setCatNome($CatNome);
+            $this->setCatGrupo($CatGrupo);
+            $this->setCatSubGrupo($CatSubGrupo);
+
+            $sql = new SqL();
+
+            $sql->query("UPDATE categorias SET CatNome = :CATNOME, CatGrupo = :CATGRUPO, CatSubGrupo = :CATSUBGRUPO WHERE CatCodigo = :CATCODIGO", array(
+
+                ':CATNOME'=>$this->getCatNome(),
+                ':CATGRUPO'=>$this->getCatGrupo(),
+                ':CATSUBGRUPO'=>$this->getCatSubGrupo(),
+                ':CATCODIGO'=>$this->getCatCodigo()          
+
+            ));
+        }
+
+        public function __construct($CatNome = "", $CatGrupo = "", $CatSubGrupo = ""){
+
+            $this->setCatNome($CatNome);
+            $this->setCatGrupo($CatGrupo);
+            $this->setCatSubGrupo($CatSubGrupo);
         }
 
         public function __toString(){
